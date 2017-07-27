@@ -1,0 +1,14 @@
+doctype html
+html
+	head
+	body
+	button <a href="form">Search User</a>
+	br
+	button <a href="newuser">Add User</a>
+	ul <b>User list: </b>
+	each user in users
+		li First name: <b> #{user.firstname} </b>
+		li Last name: <b> #{user.lastname} </b>
+		li E-mail:    <b> #{user.email} </b>
+		br
+	

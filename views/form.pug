@@ -1,0 +1,89 @@
+html
+	head
+		style(type="text/css").
+			.result {
+			width: 90%;
+			height: 90%;
+			background-color: lightblue;
+			}
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+		script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js")
+		script(src="https://code.jquery.com/ui/1.12.1/jquery-ui.js")
+		
+		body
+			form(id="form", action='/searchuser', method='POST')
+				p
+				div(class="ui-widget")
+					label(for='input') Search users by first or last name: 
+					br
+					input(type='text', id="tags", name='input', value='')
+					input(type='submit', value='Submit')
+					br
+				button <a href="/">Back</a>
+		script.
+			$("#tags").keyup(function() {
+			$.get('/sendJSON', function(response) {
+
+			var usersArray = [];
+			var users = response.users;
+			function pushNames(){
+			for(var i = 0; i < users.length; i++) {
+				usersArray.push(users[i].firstname);
+				usersArray.push(users[i].lastname);
+			};
+			};
+			pushNames();
+			console.log(usersArray);
+			$( "#tags" ).autocomplete({
+				source: usersArray,
+				minLength: 2
+				});
+				});
+				});
+
+				
+					//- p= tags.users[0].firstname
+			//- <div class="ui-widget">
+			//- <label for="tags">Tags: </label>
+			//- <input id="tags">
+			//- </div>
+			//- div(class='result')
+
+			//- $("button").click(function(){
+			//- $.get("/form", function(res) {
+			//- $( ".result" ).html(res);
+			//- alert( "Load was performed.");
+			//- });
+			//- });
+
+
+			//- $("#form").keyup(function(){ 
+			//- 	$.getJSON('users.json', function(data){
+			//- 		$.each(data, function(i, user){
+			//- 			$('ul#users').append('<li>' + user.firstname + '</li>')
+			//- 	});
+			//- 	});
+
+
+			//- 	//- $(".result").html('#{strData}');
+			//- });
+
+				//- $(document).ready(function() {
+			//- $.get("/form", function(data, status){
+
+			//- });
+
+
+			//- function addToTags() {
+			//- 	$.get("/getSomeWords", function (response) {
+			//- 		var wordString = response.words.join(" ");
+			//- 		var currentText = $('#book').text();
+			//- 		$('#book').text(currentText + " " + wordString);
+			//- 	});
+			//- }
+ 
+
+
+
+//-       <input type="text" id="ajax" list="json-datalist" placeholder="e.g. datalist">
+//- <datalist id="json-datalist"></datalist>
