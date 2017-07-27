@@ -1,44 +1,3 @@
-// // Starting with your previous website, create a new branch to preserve the old site.
-// // Your site has a form on it that acts like a search bar. When someone types 
-// into the search bar, it should retrieve a list of matching users and 
-// list them by name on the same page, similar to how the search bars on 
-// airbnb.com or hipmunk.com function.
-
-// // Once the user submits the search bar, it should exhibit the same behavior as
-//  the previous assignment, i.e. display a new page with the search results.
-
-// every key press should create:
-// drop down menu that lists matching users.
-// if key = pressed, it should check within the arrays.name if the letters match.
-// if letter in string.indexOf === key input --> show matching users in list
-// 'Blue Whale'.indexOf('Blue') !== -1; // true
-// 'Blue Whale'.indexOf('Bloe') !== -1; // false
-// for loop
-
-// function allIndex(array, input) {
-// 	var emptyArray = [];
-	
-// 	for (var i = 0; i < array.length; i++) {
-// 		if(input == array[i]) {
-// 			emptyArray.push(array.indexOf(input));
-// 			delete array[i];
-// 		};
-// 	};
-// 	console.log(emptyArray);
-// 	};
-
-// allIndex(array, 'orange');
-
-
-// // Hints:
-
-// // use https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/
-// Global_Objects/String/indexOf (Links to an external site.)Links to an external site.
-// // you cannot send or render a response more than once per request.
-// // you must find a way to capture whenever the user's input changes in 
-// the search bar. This will trigger your Ajax request to your server.
-
-
 var express = require('express');
 var fs = require('fs');
 
@@ -71,8 +30,6 @@ app.get('/sendJSON', function (req, res) {
 		res.send({users: parsedData})
 	});
 });
-
-
 
 app.get('/form', function (req, res) {
 		fs.readFile('./users.json', function (error, data) {
