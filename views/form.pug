@@ -21,7 +21,17 @@ html
 					br
 				button <a href="/">Back</a>
 		script.
-			$("#tags").keyup(function() {
+			function debounce(fn, delay) {
+			var timer = null;
+			return function () {
+			var context = this, args = arguments;
+			clearTimeout(timer);
+			timer = setTimeout(function () {
+			fn.apply(context, args);
+			}, delay);
+			};
+			}
+			$("#tags").keyup(debounce(function() {
 			$.get('/sendJSON', function(response) {
 
 			var usersArray = [];
@@ -39,7 +49,7 @@ html
 				minLength: 2
 				});
 				});
-				});
+				}, 300));
 
 				
 					//- p= tags.users[0].firstname
